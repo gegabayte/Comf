@@ -20,7 +20,7 @@ function Details() {
       )
         .then((res) => res.json())
         .then((d) => {
-          console.log(18, d);
+          // console.log(18, d);
           if (!d.data) {
             navigate('/');
           }
@@ -37,6 +37,31 @@ function Details() {
       navigate('/');
     }
   }, []);
+
+  function getData () {
+    let data = [];
+    if (localStorage.getItem('data')) {
+      data = JSON.parse(localStorage.getItem('data'))
+    }
+    return data
+  }
+
+  function handleLocal (e) {
+    e.preventDefault();
+    let user = {
+      imge: data.data.attributes.image,
+      name: data.data.attributes.title,
+      company: data.data.attributes.company,
+      price: data.data.attributes.price / 100,
+      description: data.data.attributes.description,
+      colors: data.data.attributes.colors,
+      amout: count
+    }
+    let u = getData();
+    u.push(user)
+    localStorage.setItem('data' , JSON.stringify(u))
+
+  }
 
   return (
     <div
@@ -130,10 +155,25 @@ function Details() {
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                         <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        <option value={10}>10</option>
+                        <option value={11}>11</option>
+                        <option value={12}>12</option>
+                        <option value={13}>13</option>
+                        <option value={14}>14</option>
+                        <option value={15}>15</option>
+                        <option value={16}>16</option>
+                        <option value={17}>17</option>
+                        <option value={18}>18</option>
+                        <option value={19}>19</option>
+                        <option value={20}>20</option>
                       </select>
                     </div>
 
-                    <button className='btn btn-active btn-primary mt-8 uppercase'>
+                    <button onClick={handleLocal} className='btn btn-active btn-primary mt-8 uppercase'>
                       Add to bag
                     </button>
                   </div>

@@ -7,9 +7,11 @@ function Products() {
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState(false);
   const searchRef = useRef(null);
-  const [cotegory , setCotegory] = useState('all');
-  const [company , setCompany] = useState('')
-  const [sort , setSort] = useState('')
+  const [cotegory , setCotegory] = useState(null);
+  // const [company , setCompany] = useState('')
+  const companyRef = useRef(null)
+  const [sort , setSort] = useState('');
+  const [range , setRange] = useState(1000)
   
   useEffect(() => {
     setLoading(true);
@@ -65,6 +67,7 @@ function Products() {
    }
 
    if (isValid) {
+    let company = companyRef.current.value
     fetch(`https://strapi-store-server.onrender.com/api/products?search=&category=Kids&company=all&order=${company}`)
     .then(res => res.json())
     .then(data => {
@@ -111,7 +114,7 @@ function Products() {
           </div>
           <div className="field flex flex-col gap-2 w-1/4">
             <label htmlFor="select-2" className="cursor-pointer">Select Company</label>
-            <select value={company} onChange={(e) => setCompany(e.target.value)} className="select select-bordered select-sm w-full" id="select-2">
+            <select ref={companyRef}  className="select select-bordered select-sm w-full" id="select-2">
               <option value='all'>all</option>
               <option value='Modaneza'>Modaneza</option>
               <option value='Luxora'>Luxora</option>
@@ -132,7 +135,7 @@ function Products() {
         </div>
         <div className="filter-bottom justify-between  mt-8 flex gap-4 items-center">
           <div className="range-block w-1/4">
-          <input type="range" min={0} max="1000" value="40" className="range range-primary" />
+          <input value={range} onChange={(e) => setRange(e.target.value)}  type="range" min={0} max="1000"  className="range range-primary" />
           </div>
           <div className="check w-1/4 ">
             <div className="form-control ">
