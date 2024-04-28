@@ -7,7 +7,7 @@ function Products() {
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState(false);
   const searchRef = useRef(null);
-  const [cotegory , setCotegory] = useState('');
+  const [cotegory , setCotegory] = useState('all');
   const [company , setCompany] = useState('')
   const [sort , setSort] = useState('')
   
