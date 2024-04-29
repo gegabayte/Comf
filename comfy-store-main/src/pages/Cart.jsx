@@ -2,14 +2,14 @@ import { useState } from 'react';
 // import img from '../assets/react.svg'
 function Cart() {
   const [count, setCount] = useState(1);
-  const [datas , setaDatas] = useState(JSON.parse(localStorage.getItem('data')))
-  // let users = localStorage.getItem('data');
+  // const [datas , setaDatas] = useState(JSON.parse(localStorage.getItem('data')))
+  let users = JSON.parse(localStorage.getItem('data'));
 
   return (
     <div className="w-3/5 mx-auto mt-20">
       <h1 className="text-5xl mb-5">Shopping Cart</h1>
       {
-        datas > 0 && datas.map((el , index) => {
+        users > 0 && users.map((el , index) => {
           return (
             <div key={index}>
             <hr />
